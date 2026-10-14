@@ -1,0 +1,11 @@
+prefix=/system
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: ICU-I18N
+Description: International Components for Unicode: Internationalization library
+Version: 72.1
+Libs: -L${libdir} -licui18n
+Cflags: -I${includedir}
+Requires: icu-uc
