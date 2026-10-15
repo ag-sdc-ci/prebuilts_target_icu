@@ -180,3 +180,10 @@ cc_defaults {
     },
     },
 }
+
+java_library_host {
+    name: "timezone-host",
+    srcs: [
+        "src/java/com/android/i18n/timezone/TzDataSetVersion.java",
+    ],
+}
