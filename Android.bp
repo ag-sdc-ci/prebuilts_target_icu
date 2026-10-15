@@ -199,6 +199,20 @@ java_api_contribution {
 }
 
 java_api_contribution {
+    name: "i18n.module.public.api.stubs.source.system.api.contribution",
+    api_surface: "system",
+    api_file: "android_icu4j/api/public/system-current.txt",
+    visibility: ["//visibility:public"],
+}
+
+java_api_contribution {
+    name: "i18n.module.public.api.stubs.source.module_lib.api.contribution",
+    api_surface: "module-lib",
+    api_file: "android_icu4j/api/public/module-lib-current.txt",
+    visibility: ["//visibility:public"],
+}
+
+java_api_contribution {
     name: "legacy.i18n.module.platform.api.stubs.source.api.contribution",
     api_surface: "core_platform",
     api_file: "android_icu4j/api/legacy_platform/current.txt",
@@ -221,6 +235,34 @@ java_import {
 
 java_import {
     name: "i18n.module.public.api.stubs.exportable",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.system",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.system.exportable",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.module_lib",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.module_lib.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
     visibility: ["//visibility:public"],
