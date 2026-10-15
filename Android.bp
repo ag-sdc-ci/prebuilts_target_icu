@@ -216,7 +216,6 @@ java_import {
     name: "i18n.module.public.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
-    system_modules: "core-current-stubs-system-modules",
     visibility: ["//visibility:public"],
 }
 
@@ -224,7 +223,6 @@ java_import {
     name: "i18n.module.public.api.stubs.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
-    system_modules: "core-current-stubs-system-modules",
     visibility: ["//visibility:public"],
 }
 
@@ -232,7 +230,6 @@ java_import {
     name: "legacy.i18n.module.platform.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
-    system_modules: "core-current-stubs-system-modules",
     visibility: ["//visibility:public"],
 }
 
@@ -240,7 +237,6 @@ java_import {
     name: "legacy.i18n.module.platform.api.stubs.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
-    system_modules: "core-current-stubs-system-modules",
     visibility: ["//visibility:public"],
 }
 
@@ -248,7 +244,6 @@ java_import {
     name: "stable.i18n.module.platform.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
-    system_modules: "core-current-stubs-system-modules",
     visibility: ["//visibility:public"],
 }
 
