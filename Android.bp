@@ -247,3 +247,11 @@ java_import {
     visibility: ["//visibility:public"],
 }
 
+java_import {
+    name: "icu4j",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
+    visibility: ["//visibility:public"],
+}
+
+
