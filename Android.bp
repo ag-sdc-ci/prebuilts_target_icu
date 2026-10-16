@@ -234,6 +234,13 @@ java_import {
 }
 
 java_import {
+    name: "i18n.module.public.api.stubs.source",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
     name: "i18n.module.public.api.stubs.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
@@ -269,6 +276,20 @@ java_import {
 }
 
 java_import {
+    name: "i18n.module.public.api.stubs.exportable.system",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.exportable.module_lib",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
     name: "legacy.i18n.module.platform.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
@@ -283,7 +304,28 @@ java_import {
 }
 
 java_import {
+    name: "legacy.i18n.module.platform.api.stubs.source",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
     name: "stable.i18n.module.platform.api.stubs",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "stable.i18n.module.platform.api.stubs.exportable",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "stable.i18n.module.platform.api.stubs.source",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
     visibility: ["//visibility:public"],
@@ -302,6 +344,31 @@ java_import {
     sdk_version: "none",
     visibility: ["//visibility:public"],
 }
+
+java_import {
+    name: "core-icu4j",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "core-icu4j-for-host",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "icu4j",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
 
 
 
