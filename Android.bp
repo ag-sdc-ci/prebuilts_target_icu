@@ -289,4 +289,19 @@ java_import {
     visibility: ["//visibility:public"],
 }
 
+java_import {
+    name: "i18n.module.intra.core.api.stubs",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+java_import {
+    name: "i18n.module.intra.core.api.stubs.exportable",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    visibility: ["//visibility:public"],
+}
+
+
 
