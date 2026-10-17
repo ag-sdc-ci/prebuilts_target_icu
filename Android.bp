@@ -78,6 +78,8 @@ cc_prebuilt_library_shared {
         "//apex_available:platform",
     ],
     min_sdk_version: "29",
+    sdk_version: "9",
+    stl: "none",
     srcs: ["src/lib/libicu.so"],
 }
 
