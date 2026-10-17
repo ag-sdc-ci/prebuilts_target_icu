@@ -369,6 +369,25 @@ java_import {
     visibility: ["//visibility:public"],
 }
 
+java_import {
+    name: "icu4j_calendar_astronomer",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
+    prefer: true,
+}
+
+java_import_host {
+    name: "icu4j-icudata-jarjar",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    prefer: true,
+}
+
+java_import_host {
+    name: "icu4j-icutzdata-jarjar",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    prefer: true,
+}
+
 
 
 
