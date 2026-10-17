@@ -376,15 +376,17 @@ java_import {
     prefer: true,
 }
 
-java_import_host {
+java_import {
     name: "icu4j-icudata-jarjar",
     jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
     prefer: true,
 }
 
-java_import_host {
+java_import {
     name: "icu4j-icutzdata-jarjar",
     jars: ["android_icu4j/runtime-i18n.jar"],
+    host_supported: true,
     prefer: true,
 }
 
