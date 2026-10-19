@@ -5,6 +5,23 @@ package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
+prebuilt_apex {
+    name: "com.android.i18n",
+    apex_name: "com.android.i18n",
+    source_apex_name: "com.android.i18n",
+    arch: {
+        x86_64: {
+            src: "com.android.i18n.apex",
+        },
+        arm64: {
+            src: "com.android.i18n.apex",
+        },
+    },
+    filename: "com.android.i18n.apex",
+    prefer: true,
+    installable: true,
+}
+
 cc_prebuilt_library_shared {
     name: "libandroidicu",
     vendor_available: true,
