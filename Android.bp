@@ -18,6 +18,8 @@ prebuilt_apex {
         },
     },
     filename: "com.android.i18n.apex",
+    exported_bootclasspath_fragments: ["i18n-bootclasspath-fragment"],
+    exported_java_libs: ["core-icu4j"],
     prefer: true,
     installable: true,
 }
@@ -179,24 +181,24 @@ cc_prebuilt_library_static {
 cc_defaults {
     name: "icu4c_defaults",
     cflags: [
-    "-Wall",
-    "-Werror",
-    "-Wno-ambiguous-reversed-operator",
-    "-Wno-deprecated-declarations",
-    "-Wno-unused-parameter",
-    "-Wno-unused-const-variable",
-    "-Wno-unneeded-internal-declaration",
-    "-DUCONFIG_USE_ML_PHRASE_BREAKING=1",
+        "-Wall",
+        "-Werror",
+        "-Wno-ambiguous-reversed-operator",
+        "-Wno-deprecated-declarations",
+        "-Wno-unused-parameter",
+        "-Wno-unused-const-variable",
+        "-Wno-unneeded-internal-declaration",
+        "-DUCONFIG_USE_ML_PHRASE_BREAKING=1",
     ],
     target: {
-    android: {
-    cflags: [
-    "-DANDROID_LINK_SHARED_ICU4C",
-    ],
-    },
-    windows: {
-    enabled: true,
-    },
+        android: {
+            cflags: [
+                "-DANDROID_LINK_SHARED_ICU4C",
+            ],
+        },
+        windows: {
+            enabled: true,
+        },
     },
 }
 
@@ -207,27 +209,82 @@ java_library_host {
     ],
 }
 
+filegroup {
+    name: "timezone_sources",
+    srcs: [
+        "src/java/com/android/i18n/timezone/**/*.java",
+        "src/java/com/android/i18n/util/**/*.java",
+    ],
+    path: "src/java",
+    visibility: ["//visibility:public"],
+}
+
+java_library {
+    name: "timezone-lib",
+    srcs: [
+        ":timezone_sources",
+    ],
+    static_libs: [
+        "core-icu4j",
+    ],
+    sdk_version: "core_platform",
+    visibility: ["//visibility:public"],
+}
+
 // -----------------------------------------------------------------------------
 // Java API Contributions & Stubs
 // -----------------------------------------------------------------------------
-java_api_contribution {
-    name: "i18n.module.public.api.stubs.source.api.contribution",
-    api_surface: "public",
-    api_file: "android_icu4j/api/public/current.txt",
+java_sdk_library_import {
+    name: "i18n.module.public.api",
+    shared_library: false,
+    public: {
+        jars: ["android_icu4j/runtime-i18n.jar"],
+        stub_srcs: ["android_icu4j/runtime-i18n.jar"],
+        current_api: "android_icu4j/api/public/current.txt",
+        removed_api: "android_icu4j/api/public/removed.txt",
+        annotations: "android_icu4j/api/public/current.txt",
+        sdk_version: "none",
+    },
+    system: {
+        jars: ["android_icu4j/runtime-i18n.jar"],
+        stub_srcs: ["android_icu4j/runtime-i18n.jar"],
+        current_api: "android_icu4j/api/public/system-current.txt",
+        removed_api: "android_icu4j/api/public/system-removed.txt",
+        annotations: "android_icu4j/api/public/system-current.txt",
+        sdk_version: "none",
+    },
+    module_lib: {
+        jars: ["android_icu4j/runtime-i18n.jar"],
+        stub_srcs: ["android_icu4j/runtime-i18n.jar"],
+        current_api: "android_icu4j/api/public/module-lib-current.txt",
+        removed_api: "android_icu4j/api/public/module-lib-removed.txt",
+        annotations: "android_icu4j/api/public/module-lib-current.txt",
+        sdk_version: "none",
+    },
+    prefer: true,
+}
+
+java_import {
+    name: "i18n.module.public.api.stubs.exportable",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
-java_api_contribution {
-    name: "i18n.module.public.api.stubs.source.system.api.contribution",
-    api_surface: "system",
-    api_file: "android_icu4j/api/public/system-current.txt",
+java_import {
+    name: "i18n.module.public.api.stubs.exportable.system",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
-java_api_contribution {
-    name: "i18n.module.public.api.stubs.source.module_lib.api.contribution",
-    api_surface: "module-lib",
-    api_file: "android_icu4j/api/public/module-lib-current.txt",
+java_import {
+    name: "i18n.module.public.api.stubs.exportable.module_lib",
+    jars: ["android_icu4j/runtime-i18n.jar"],
+    sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -246,72 +303,10 @@ java_api_contribution {
 }
 
 java_import {
-    name: "i18n.module.public.api.stubs",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.source",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.exportable",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.system",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.system.exportable",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.module_lib",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.module_lib.exportable",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.exportable.system",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.public.api.stubs.exportable.module_lib",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
     name: "legacy.i18n.module.platform.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -319,6 +314,7 @@ java_import {
     name: "legacy.i18n.module.platform.api.stubs.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -326,6 +322,7 @@ java_import {
     name: "legacy.i18n.module.platform.api.stubs.source",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -333,6 +330,7 @@ java_import {
     name: "stable.i18n.module.platform.api.stubs",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -340,6 +338,7 @@ java_import {
     name: "stable.i18n.module.platform.api.stubs.exportable",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
@@ -347,21 +346,22 @@ java_import {
     name: "stable.i18n.module.platform.api.stubs.source",
     jars: ["android_icu4j/runtime-i18n.jar"],
     sdk_version: "none",
+    min_sdk_version: "31",
     visibility: ["//visibility:public"],
 }
 
-java_import {
-    name: "i18n.module.intra.core.api.stubs",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
-}
-
-java_import {
-    name: "i18n.module.intra.core.api.stubs.exportable",
-    jars: ["android_icu4j/runtime-i18n.jar"],
-    sdk_version: "none",
-    visibility: ["//visibility:public"],
+java_sdk_library_import {
+    name: "i18n.module.intra.core.api",
+    shared_library: false,
+    public: {
+        jars: ["android_icu4j/runtime-i18n.jar"],
+        stub_srcs: ["android_icu4j/runtime-i18n.jar"],
+        current_api: "android_icu4j/api/intra/current.txt",
+        removed_api: "android_icu4j/api/intra/removed.txt",
+        annotations: "android_icu4j/api/intra/current.txt",
+        sdk_version: "none",
+    },
+    prefer: true,
 }
 
 java_import {
@@ -369,6 +369,12 @@ java_import {
     jars: ["android_icu4j/runtime-i18n.jar"],
     host_supported: true,
     sdk_version: "none",
+    min_sdk_version: "31",
+    prefer: true,
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.i18n",
+    ],
     visibility: ["//visibility:public"],
 }
 
@@ -384,7 +390,12 @@ java_import {
     name: "icu4j",
     jars: ["android_icu4j/runtime-i18n.jar"],
     host_supported: true,
-    sdk_version: "none",
+    sdk_version: "core_current",
+    min_sdk_version: "28",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
     visibility: ["//visibility:public"],
 }
 
@@ -393,6 +404,12 @@ java_import {
     jars: ["android_icu4j/runtime-i18n.jar"],
     host_supported: true,
     prefer: true,
+    sdk_version: "core_current",
+    min_sdk_version: "28",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 java_import {
@@ -400,6 +417,12 @@ java_import {
     jars: ["android_icu4j/runtime-i18n.jar"],
     host_supported: true,
     prefer: true,
+    sdk_version: "core_current",
+    min_sdk_version: "28",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
 
 java_import {
@@ -407,8 +430,10 @@ java_import {
     jars: ["android_icu4j/runtime-i18n.jar"],
     host_supported: true,
     prefer: true,
+    sdk_version: "core_current",
+    min_sdk_version: "28",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
 }
-
-
-
-
