@@ -202,35 +202,6 @@ cc_defaults {
     },
 }
 
-java_library_host {
-    name: "timezone-host",
-    srcs: [
-        "src/java/com/android/i18n/timezone/TzDataSetVersion.java",
-    ],
-}
-
-filegroup {
-    name: "timezone_sources",
-    srcs: [
-        "src/java/com/android/i18n/timezone/**/*.java",
-        "src/java/com/android/i18n/util/**/*.java",
-    ],
-    path: "src/java",
-    visibility: ["//visibility:public"],
-}
-
-java_library {
-    name: "timezone-lib",
-    srcs: [
-        ":timezone_sources",
-    ],
-    static_libs: [
-        "core-icu4j",
-    ],
-    sdk_version: "core_platform",
-    visibility: ["//visibility:public"],
-}
-
 // -----------------------------------------------------------------------------
 // Java API Contributions & Stubs
 // -----------------------------------------------------------------------------
